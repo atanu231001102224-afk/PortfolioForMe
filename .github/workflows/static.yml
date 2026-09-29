@@ -3,7 +3,7 @@ name: Deploy React Portfolio
 on:
   push:
     branches:
-      - main  # 👈 Make sure this matches your default branch name (main or master)
+      - main  # Change to master if your default branch is named master
 
 permissions:
   contents: read
@@ -29,17 +29,21 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          # Tells Node where to find the package-lock.json file for caching
+          cache-dependency-path: ./Assingment-1/package-lock.json 
 
       - name: Install Dependencies
+        working-directory: ./Assingment-1  # 👈 Tells GitHub to open this folder first
         run: npm ci 
 
       - name: Build Project
+        working-directory: ./Assingment-1  # 👈 Tells GitHub to build inside this folder
         run: npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist # Vite outputs production files here
+          path: ./Assingment-1/dist # 👈 Points directly to Vite's build output inside the folder
 
       - name: Deploy to GitHub Pages
         id: deployment
