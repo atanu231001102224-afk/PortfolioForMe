@@ -4,5 +4,5 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/your-repository-name/', // 👈 ADD THIS LINE
+  base: '/PortfolioForMe/', // 👈 ADD THIS LINE
 })
